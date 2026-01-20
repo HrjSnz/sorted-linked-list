@@ -1,0 +1,26 @@
+{
+  "name": "hrjsnz/sorted-linked-list",
+  "description": "A sorted linked list implementation for PHP 8.4+",
+  "version": "0.1.0",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.4",
+    "ext-intl": "*"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^2.1",
+    "friendsofphp/php-cs-fixer": "^3.92",
+    "phpunit/phpunit": "^12.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "HrjSnz\\SortedLinkedList\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HrjSnz\\SortedLinkedList\\Tests\\": "tests/"
+    }
+  }
+}
