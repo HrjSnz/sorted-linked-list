@@ -111,17 +111,17 @@ abstract class SortedLinkedListEngine implements Countable, IteratorAggregate
      */
     public function getDuplicatesWithCount(): array
     {
-        $counts = [];
+        $duplicates = [];
         $previousValue = null;
         $previousCount = 0;
 
         foreach ($this->getIterator() as $value) {
-            if ($previousValue !== null
-                && $this->comparator->compare($value, $previousValue) === 0) {
+            if ($previousValue !== null && $this->comparator->compare($value, $previousValue) === 0) {
                 $previousCount++;
             } else {
                 if ($previousCount > 1) {
-                    $counts[] = ['value' => $previousValue, 'count' => $previousCount];
+                    /** @var T $previousValue */
+                    $duplicates[] = ['value' => $previousValue, 'count' => $previousCount];
                 }
                 $previousValue = $value;
                 $previousCount = 1;
@@ -129,10 +129,11 @@ abstract class SortedLinkedListEngine implements Countable, IteratorAggregate
         }
 
         if ($previousCount > 1) {
-            $counts[] = ['value' => $previousValue, 'count' => $previousCount];
+            /** @var T $previousValue */
+            $duplicates[] = ['value' => $previousValue, 'count' => $previousCount];
         }
 
-        return $counts;
+        return $duplicates;
     }
 
     /**
