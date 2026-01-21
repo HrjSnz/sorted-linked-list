@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace HrjSnz\SortedLinkedList;
 
 use Countable;
-use Generator;
 use IteratorAggregate;
 use InvalidArgumentException;
 use HrjSnz\SortedLinkedList\Comparator\ComparatorInterface;
@@ -219,12 +218,12 @@ abstract class SortedLinkedListEngine implements Countable, IteratorAggregate
 
     /**
      * @param T $min
-     * @return Generator<int, T>
+     * @return Traversable<int, T>
      */
     final protected function greaterThan(
         mixed           $min,
         BetweenBoundary $boundary = BetweenBoundary::INCLUSIVE,
-    ): Generator {
+    ): Traversable {
         $yielding = false;
         foreach ($this->getIterator() as $value) {
             if ($yielding) {
@@ -238,12 +237,12 @@ abstract class SortedLinkedListEngine implements Countable, IteratorAggregate
 
     /**
      * @param T $max
-     * @return Generator<int, T>
+     * @return Traversable<int, T>
      */
     final protected function lessThan(
         mixed           $max,
         BetweenBoundary $boundary = BetweenBoundary::INCLUSIVE,
-    ): Generator {
+    ): Traversable {
         foreach ($this->getIterator() as $value) {
             if ($this->isWithinMaxBoundary($value, $max, $boundary)) {
                 yield $value;
@@ -258,14 +257,14 @@ abstract class SortedLinkedListEngine implements Countable, IteratorAggregate
      *
      * @param T $min
      * @param T $max
-     * @return Generator<int, T>
+     * @return Traversable<int, T>
      */
     final protected function inRange(
         mixed           $min,
         mixed           $max,
         BetweenBoundary $minBoundary = BetweenBoundary::INCLUSIVE,
         BetweenBoundary $maxBoundary = BetweenBoundary::INCLUSIVE,
-    ): Generator {
+    ): Traversable {
         if ($this->comparator->compare($min, $max) > 0) {
             throw new InvalidArgumentException(
                 'Invalid range: lower bound must come before upper bound'

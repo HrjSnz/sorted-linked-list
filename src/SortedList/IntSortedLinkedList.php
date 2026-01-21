@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace HrjSnz\SortedLinkedList\SortedList;
 
-use Generator;
 use InvalidArgumentException;
 use HrjSnz\SortedLinkedList\BetweenBoundary;
 use HrjSnz\SortedLinkedList\Comparator\ComparatorInterface;
@@ -54,30 +53,39 @@ final class IntSortedLinkedList extends SortedLinkedListEngine
         parent::addAll($checked);
     }
 
+    /**
+     * @return \Traversable<int, int>
+     */
     public function findGreaterThan(
         int|float             $min,
         BetweenBoundary $boundary = BetweenBoundary::INCLUSIVE,
-    ): Generator {
+    ): \Traversable {
         $min = $this->ensureIntType($min);
 
         return parent::greaterThan($min, $boundary);
     }
 
+    /**
+     * @return \Traversable<int, int>
+     */
     public function findLessThan(
         int|float             $max,
         BetweenBoundary $boundary = BetweenBoundary::INCLUSIVE,
-    ): Generator {
+    ): \Traversable {
         $max = $this->ensureIntType($max);
 
         return parent::lessThan($max, $boundary);
     }
 
+    /**
+     * @return \Traversable<int, int>
+     */
     public function findInRange(
         int|float             $min,
         int|float             $max,
         BetweenBoundary $minBoundary = BetweenBoundary::INCLUSIVE,
         BetweenBoundary $maxBoundary = BetweenBoundary::INCLUSIVE,
-    ): Generator {
+    ): \Traversable {
         $min = $this->ensureIntType($min);
         $max = $this->ensureIntType($max);
 

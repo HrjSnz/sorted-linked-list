@@ -409,9 +409,9 @@ $values = iterator_to_array($list);
 
 | Method | Returns | Description |
 |--------|---------|-------------|
-| `findGreaterThan($min, $boundary)` | `Generator<int, T>` | Values >= or > min |
-| `findLessThan($max, $boundary)` | `Generator<int, T>` | Values <= or < max |
-| `findInRange($min, $max, ...)` | `Generator<int, T>` | Values in range |
+| `findGreaterThan($min, $boundary)` | `Traversable<int, T>` | Values >= or > min |
+| `findLessThan($max, $boundary)` | `Traversable<int, T>` | Values <= or < max |
+| `findInRange($min, $max, ...)` | `Traversable<int, T>` | Values in range |
 
 #### Comparator Management
 | Method | Description |
